@@ -9,5 +9,6 @@ namespace QAUtils.Utils
     public enum Pages
     {
         Main,
+        Search,
     }
 }

@@ -12,6 +12,7 @@ namespace TestProjectQA.PageObjects
     {
         private IWebDriver driver;
         private const int WaitInSecond = 5;
+        private const int ScrollWait = 500;
 
         public BasePage(IWebDriver driver)
         {
@@ -22,10 +23,20 @@ namespace TestProjectQA.PageObjects
         {
             var locator = GetClickableElementLocator(nameElement);
             var webElement = WaitElement(locator);
+
             webElement.Click();
         }
-        
-        
+
+        public void EnterTextInElement(string nameElement, string text)
+        {
+            var locator = GetClickableElementLocator(nameElement);
+            var webElement = WaitElement(locator);
+            webElement.Click();
+            webElement.Clear();
+            webElement.SendKeys(text);
+        }
+
+
         protected IWebElement WaitElement(By selector, IWebElement parentElement = null, int waitInSecond = WaitInSecond)
         {
             try
@@ -64,7 +75,26 @@ namespace TestProjectQA.PageObjects
         protected virtual By GetClickableElementLocator(string nameElement)
         {
             throw new NotImplementedException();
-        }        
+        }
+
+        public void ScrollToElement(IWebElement name, bool isSmooth = false)
+        {
+            try
+            {
+                var behavior = isSmooth == true ? "smooth" : "auto";
+
+                ((IJavaScriptExecutor)driver).ExecuteScript(
+                    $"arguments[0].scrollIntoView({{behavior: '{behavior}', block: 'center', inline: 'center'}});",
+                    name);
+
+                Thread.Sleep(ScrollWait);
+            }
+            catch (Exception ex)
+            {
+                throw new WebDriverException($"Cannot scroll to element with text \"{name?.Text}\" and tag \"{name?.TagName}\"", ex);
+            }
+        }
+
 
     }
 }

@@ -10,5 +10,6 @@ namespace QAUtils.Utils
     {
         public const string WebDriverKey = "WebDriverKey";
         public const string PageKey = "PageKey";
+        public const string SearchKey = "SearchKey";
     }
 }
