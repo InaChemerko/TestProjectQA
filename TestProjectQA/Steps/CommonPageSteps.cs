@@ -16,8 +16,8 @@ namespace TestProjectQA.Steps
         public CommonPageSteps(ScenarioContext scenarioContext) : base(scenarioContext)
         {
         }
-        public MainPage MainPage => new MainPage(Driver);
-        public SearchPage SearchPage => new SearchPage(Driver);
+        public HomePage MainPage => new HomePage(Driver);
+        public SearchPage SearchPage => new SearchPage(Driver);       
 
         [When(@"User clicks on (.*) button")]
         public void ClickOnButton(string button)
@@ -37,8 +37,9 @@ namespace TestProjectQA.Steps
         {
             return page switch
             {
-                Pages.Main => new MainPage(Driver),
+                Pages.Home => new HomePage(Driver),
                 Pages.Search => new SearchPage(Driver),
+                Pages.SearchResult => new SearchResultPage(Driver),
                 _ => throw new NotImplementedException($"Unable to get page {page}"),                
             };
         }
@@ -48,6 +49,13 @@ namespace TestProjectQA.Steps
         {
             var pageObject = ScenarioContext.Get<BasePage>(KeyStorage.PageKey);
             pageObject.EnterTextInElement(nameElement, text);
+        }
+
+        [When(@"User clicks on (.*) product item")]
+        public void ClickOnProductItem(string num)
+        {
+            var pageObject = ScenarioContext.Get<SearchResultPage>(KeyStorage.PageKey);
+            pageObject.ClikNElement(Driver, num);
         }
 
     }

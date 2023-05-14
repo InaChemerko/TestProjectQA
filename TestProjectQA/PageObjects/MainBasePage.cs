@@ -11,11 +11,19 @@ namespace TestProjectQA.PageObjects
     {
 
         private IWebElement searchField => WaitElement(By.XPath("//input[@name='q']"));
+        private IWebElement searchButton => WaitElement(By.XPath("//button[@type='submit']"));
+        private IWebElement okCookiesButton => WaitElement(By.XPath("//button[text()='Ok']"));
 
         public static readonly Dictionary<string, By> ClickableElements = new Dictionary<string, By>()
         {
             {
                 "SearchField", By.XPath("//input[@name='q']")
+            },
+            {
+                "SearchButton", By.XPath("//button[@type='submit']")
+            },
+            {
+                "OkCookies", By.XPath("//button[text()='Ok']")
             }
         };
 
@@ -28,6 +36,8 @@ namespace TestProjectQA.PageObjects
             searchField.Click();
             searchField.SendKeys(text);
         }
+
+        
         
     }
 }

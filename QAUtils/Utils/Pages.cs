@@ -8,7 +8,8 @@ namespace QAUtils.Utils
 {
     public enum Pages
     {
-        Main,
+        Home,
         Search,
+        SearchResult
     }
 }

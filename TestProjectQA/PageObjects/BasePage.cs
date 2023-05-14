@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace TestProjectQA.PageObjects
         private IWebDriver driver;
         private const int WaitInSecond = 5;
         private const int ScrollWait = 500;
-
+        
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
@@ -23,7 +24,7 @@ namespace TestProjectQA.PageObjects
         {
             var locator = GetClickableElementLocator(nameElement);
             var webElement = WaitElement(locator);
-
+            new Actions(driver).MoveToElement(webElement).Perform();
             webElement.Click();
         }
 
@@ -93,8 +94,8 @@ namespace TestProjectQA.PageObjects
             {
                 throw new WebDriverException($"Cannot scroll to element with text \"{name?.Text}\" and tag \"{name?.TagName}\"", ex);
             }
-        }
-
+        }        
+               
 
     }
 }

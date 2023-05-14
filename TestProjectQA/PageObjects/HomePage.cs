@@ -7,18 +7,23 @@ using System.Threading.Tasks;
 
 namespace TestProjectQA.PageObjects
 {
-    public class MainPage : BasePage
+    public class HomePage : BasePage
     {
 
         private IWebElement goShoppingLink => WaitElement(By.XPath("//section[contains(@class, 'hero')]//span[text()='Go shopping']"));
+        private IWebElement acceptCookies => WaitElement(By.XPath("//button[text()='Accept all']"));
+
         private static readonly Dictionary<string, By> clickableElements = new Dictionary<string, By>()
         {
             {
                 "GoShopping", By.XPath("//section[contains(@class, 'hero')]//span[text()='Go shopping']")
+            },
+            {
+                "AcceptCookies", By.XPath("//button[text()='Accept all']")
             }
         };
 
-        public MainPage(IWebDriver driver) : base(driver)
+        public HomePage(IWebDriver driver) : base(driver)
         {
         }
 
