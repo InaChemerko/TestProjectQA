@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace TestProjectQA.PageObjects
 {
-    public abstract class BasePage
+    public abstract class BasePageObject : WebLoadableComponent
     {
         private IWebDriver driver;
-        private const int WaitInSecond = 5;
         private const int ScrollWait = 500;
         
-        public BasePage(IWebDriver driver)
+        public BasePageObject(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
         }
@@ -24,7 +23,6 @@ namespace TestProjectQA.PageObjects
         {
             var locator = GetClickableElementLocator(nameElement);
             var webElement = WaitElement(locator);
-            // new Actions(driver).MoveToElement(webElement).Perform();
             ScrollToElement(webElement);
             webElement.Click();
         }
@@ -37,42 +35,6 @@ namespace TestProjectQA.PageObjects
             webElement.Clear();
             webElement.SendKeys(text);
         }
-
-
-        protected IWebElement WaitElement(By selector, IWebElement parentElement = null, int waitInSecond = WaitInSecond)
-        {
-            try
-            {
-                IWebElement result = null;
-                Wait(sec: waitInSecond).Until(driver =>
-                {
-                    try
-                    {
-
-                        var element = parentElement == null ? driver.FindElement(selector) : parentElement.FindElement(selector);
-                        result = element;
-                        return true;
-
-                    }
-                    catch (Exception)
-                    {
-
-                        return false;
-                    }
-                });
-
-                return result ?? throw new WebDriverTimeoutException();
-            }
-            catch (WebDriverTimeoutException)
-            {
-
-                throw new NoSuchElementException($"Element was not found by the following selector: ${selector.ToString()}");
-            }
-
-        }
-
-        protected WebDriverWait Wait(int days = 0, int hours = 0, int min = 0, int sec = 0, int ms = 0) =>
-            new(this.driver, new TimeSpan(days, hours, min, sec, ms));
 
         protected virtual By GetClickableElementLocator(string nameElement)
         {
@@ -95,6 +57,11 @@ namespace TestProjectQA.PageObjects
             {
                 throw new WebDriverException($"Cannot scroll to element with text \"{name?.Text}\" and tag \"{name?.TagName}\"", ex);
             }
+        }
+
+        public void ScrollToTop()
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0,0)");
         }
 
         public void MoveToElement(string nameElement)
