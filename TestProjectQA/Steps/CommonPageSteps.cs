@@ -59,6 +59,13 @@ namespace TestProjectQA.Steps
             pageObject.ClikNElement(Driver, num);
         }
 
+        [When(@"User clicks on (.*) specific product item in (.*) list")]
+        public void ClickOnSpecificProductItem(string num, string nameElement)
+        {
+            var pageObject = ScenarioContext.Get<SearchResultPage>(KeyStorage.PageKey);
+            pageObject.ClickOnSpecificElement(num, nameElement);
+        }
+
         [When(@"User moves to (.*)")]
         public void MoveToWebElement(string name)
         {

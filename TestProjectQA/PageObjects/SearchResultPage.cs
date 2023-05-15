@@ -10,9 +10,13 @@ namespace TestProjectQA.PageObjects
 {
     public class SearchResultPage : MainBasePage
     {
+        private IList<IWebElement> listItems => WaitElements(By.XPath("//div[@class='pip-compact-price-package']"));
+
         private static readonly Dictionary<string, By> clickableElements = new Dictionary<string, By>()
         {
-            
+            {
+                "ListItems", By.XPath("//div[@class='pip-compact-price-package']")
+            }
         };
 
         public SearchResultPage(IWebDriver driver) : base(driver)
@@ -39,6 +43,13 @@ namespace TestProjectQA.PageObjects
             var webElement = WaitElement(By.XPath("//div[@class='plp-fragment-wrapper']["+num+"]//div[contains(@class, 'bottom-wrapper')]//a"));
             new Actions(driver).MoveToElement(webElement).Perform();
             webElement.Click();
+        }
+
+        public void ClickOnSpecificElement(string num, string nameElement)
+        {
+            var locator = GetClickableElementLocator(nameElement);
+            IList<IWebElement> webElements = WaitElements(locator);
+            webElements[Int32.Parse(num) - 1].Click();
         }
     }
 }
