@@ -10,14 +10,19 @@ namespace QAUtils.Applications
 {
     public class Application
     {
+        private static string ClientsFolder => Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.ToString(), "QAUtils", "Clients");
+
         public static IWebDriver GetWebDriver()
         {
             var options = new ChromeOptions();
-            var pathToChromeDriver = "C:\\Users\\Ina\\source\\repos\\TestProjectQA\\QAUtils\\Clients";
+            options.AddArgument("--disable-notifications");
+            options.AddArgument("disable-infobars");
+            options.AddArgument("--lang=en-GB");
+
             CodePagesEncodingProvider.Instance.GetEncoding(437);
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            return new ChromeDriver(pathToChromeDriver, options);
+            return new ChromeDriver(ClientsFolder, options);
         }
 
         public static void OpenDriver(IWebDriver driver, string url)
