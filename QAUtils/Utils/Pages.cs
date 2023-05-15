@@ -10,6 +10,7 @@ namespace QAUtils.Utils
     {
         Home,
         Search,
-        SearchResult
+        SearchResult,
+        ProductItem
     }
 }

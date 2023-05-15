@@ -94,8 +94,20 @@ namespace TestProjectQA.PageObjects
             {
                 throw new WebDriverException($"Cannot scroll to element with text \"{name?.Text}\" and tag \"{name?.TagName}\"", ex);
             }
-        }        
-               
+        }
 
+        public void MoveToElement(string nameElement)
+        {
+            var locator = GetClickableElementLocator(nameElement);
+            var webElement = WaitElement(locator);
+            new Actions(driver).MoveToElement(webElement).Perform();
+        }
+
+        public void ScrollToWebElelemnt(string nameElement)
+        {
+            var locator = GetClickableElementLocator(nameElement);
+            var webElement = WaitElement(locator);
+            ScrollToElement(webElement);
+        }
     }
 }

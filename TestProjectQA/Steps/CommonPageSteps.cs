@@ -40,6 +40,7 @@ namespace TestProjectQA.Steps
                 Pages.Home => new HomePage(Driver),
                 Pages.Search => new SearchPage(Driver),
                 Pages.SearchResult => new SearchResultPage(Driver),
+                Pages.ProductItem => new ProductItemPage(Driver),
                 _ => throw new NotImplementedException($"Unable to get page {page}"),                
             };
         }
@@ -58,5 +59,24 @@ namespace TestProjectQA.Steps
             pageObject.ClikNElement(Driver, num);
         }
 
+        [When(@"User moves to (.*)")]
+        public void MoveToWebElement(string name)
+        {
+            var pageObject = ScenarioContext.Get<BasePage>(KeyStorage.PageKey);
+            pageObject.MoveToElement(name);
+        }
+
+        [When(@"User scrolls to top page")]
+        public void ScrollToTop()
+        {
+            ProjectUtils.ScrollToTopPage(Driver);
+        }
+
+        [When(@"User scrolls to (.*) element")]
+        public void Scrolling(string nameElement)
+        {
+            var pageObject = ScenarioContext.Get<BasePage>(KeyStorage.PageKey);
+            pageObject.ScrollToWebElelemnt(nameElement);
+        }
     }
 }

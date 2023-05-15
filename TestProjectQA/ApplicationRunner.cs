@@ -31,9 +31,9 @@ namespace TestProjectQA
         }
 
         [AfterScenario]
-       public void AfterScenario()
-       {
-           Application.CloseDriver(driver);
+        public void AfterScenario()
+        {
+            Application.CloseDriver(driver);
 
         }
 

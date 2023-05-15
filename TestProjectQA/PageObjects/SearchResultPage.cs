@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestProjectQA.PageObjects
 {
-    internal class SearchResultPage : MainBasePage
+    public class SearchResultPage : MainBasePage
     {
         private static readonly Dictionary<string, By> clickableElements = new Dictionary<string, By>()
         {

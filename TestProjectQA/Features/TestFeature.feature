@@ -15,4 +15,11 @@ Scenario: Go Shopping
 	When User clicks on SearchButton button
 	When User opens SearchResult page
 	When User clicks on 1 product item
+	When User opens ProductItem page
+	When User clicks on AddToBag button
+	When User moves to ConfirmWindow
+	When User clicks on CloseButton button
+	#When User scrolls to top page
+	#When User scrolls to SearchField element
+	#When User moves to SearchField
 	When User waits 3 seconds
