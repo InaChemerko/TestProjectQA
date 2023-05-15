@@ -13,7 +13,8 @@ namespace QAUtils.Utils
     {
         public static void ScrollToTopPage(IWebDriver driver)
         {
-            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, -document.body.scrollHeight)");
+            //((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, -document.body.scrollHeight)");
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollBy(0, -document.body.scrollHeight)");
         }
     }
 }

@@ -24,7 +24,8 @@ namespace TestProjectQA.PageObjects
         {
             var locator = GetClickableElementLocator(nameElement);
             var webElement = WaitElement(locator);
-            new Actions(driver).MoveToElement(webElement).Perform();
+            // new Actions(driver).MoveToElement(webElement).Perform();
+            ScrollToElement(webElement);
             webElement.Click();
         }
 

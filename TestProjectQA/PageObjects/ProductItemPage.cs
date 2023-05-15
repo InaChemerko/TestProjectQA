@@ -12,6 +12,7 @@ namespace TestProjectQA.PageObjects
         private IWebElement addToBag => WaitElement(By.XPath("//span[text()='Add to bag']"));
         private IWebElement closeButton => WaitElement(By.XPath("//button[@aria-label='Close']"));
         private IWebElement confirmWindow => WaitElement(By.XPath("//div[contains(@class, 'rec-sheets')]/div[contains(@class, 'rec-sheets')]"));
+        private IWebElement navigation => WaitElement(By.XPath("//nav[@aria-label='Breadcrumb']"));
 
         private static readonly Dictionary<string, By> clickableElements = new Dictionary<string, By>()
         { 
@@ -23,6 +24,9 @@ namespace TestProjectQA.PageObjects
             },
             {
                 "ConfirmWindow", By.XPath("//div[contains(@class, 'rec-sheets')]/div[contains(@class, 'rec-sheets')]")
+            },
+            {
+                "Navigation", By.XPath("//nav[@aria-label='Breadcrumb']")
             }
         }; 
         

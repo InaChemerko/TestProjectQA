@@ -69,7 +69,9 @@ namespace TestProjectQA.Steps
         [When(@"User scrolls to top page")]
         public void ScrollToTop()
         {
-            ProjectUtils.ScrollToTopPage(Driver);
+            // ProjectUtils.ScrollToTopPage(Driver);
+            //((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollBy(0, -document.body.scrollHeight)");
+            ((IJavaScriptExecutor)Driver).ExecuteScript("window.scroll(0, 0)");
         }
 
         [When(@"User scrolls to (.*) element")]
