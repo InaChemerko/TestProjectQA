@@ -13,16 +13,20 @@ namespace TestProjectQA.Steps
 {
     public class CommonPageSteps : BaseSteps
     {
-        public CommonPageSteps(ScenarioContext scenarioContext) : base(scenarioContext)
+        public CommonPageSteps(ScenarioContext scenarioContext) 
+            : base(scenarioContext)
         {
         }
-        public HomePage MainPage => new HomePage(Driver);
-        public SearchPage SearchPage => new SearchPage(Driver);       
+
+        public HomePage MainPage => new (Driver);
+        public SearchPage SearchPage => new (Driver);     
+        
+        public SearchResultPage SearchResultPage => new (Driver);
 
         [When(@"User clicks on (.*) button")]
         public void ClickOnButton(string button)
         {
-            var pageObject = ScenarioContext.Get<BasePage>(KeyStorage.PageKey);
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
             pageObject.ClickElement(button);
         }
 
@@ -33,7 +37,7 @@ namespace TestProjectQA.Steps
             ScenarioContext.Set(pageObject, KeyStorage.PageKey);
         }
 
-        private BasePage GetPageObject(Pages page)
+        private BasePageObject GetPageObject(Pages page)
         {
             return page switch
             {
@@ -48,36 +52,34 @@ namespace TestProjectQA.Steps
         [When(@"User enter in (.*) ""(.*)"" text")]
         public void UserEnterWords(string nameElement, string text)
         {
-            var pageObject = ScenarioContext.Get<BasePage>(KeyStorage.PageKey);
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
             pageObject.EnterTextInElement(nameElement, text);
         }
 
         [When(@"User clicks on (.*) product item")]
-        public void ClickOnProductItem(string num)
+        public void ClickOnProductItem(int num)
         {
-            var pageObject = ScenarioContext.Get<SearchResultPage>(KeyStorage.PageKey);
-            pageObject.ClikNElement(Driver, num);
+            SearchResultPage.ClikNElement(Driver, num);
         }
 
         [When(@"User moves to (.*)")]
         public void MoveToWebElement(string name)
         {
-            var pageObject = ScenarioContext.Get<BasePage>(KeyStorage.PageKey);
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
             pageObject.MoveToElement(name);
         }
 
         [When(@"User scrolls to top page")]
-        public void ScrollToTop()
+        public void UserScrollsToTopPage()
         {
-            // ProjectUtils.ScrollToTopPage(Driver);
-            //((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollBy(0, -document.body.scrollHeight)");
-            ((IJavaScriptExecutor)Driver).ExecuteScript("window.scroll(0, 0)");
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
+            pageObject.ScrollToTop();
         }
 
         [When(@"User scrolls to (.*) element")]
         public void Scrolling(string nameElement)
         {
-            var pageObject = ScenarioContext.Get<BasePage>(KeyStorage.PageKey);
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
             pageObject.ScrollToWebElelemnt(nameElement);
         }
     }
