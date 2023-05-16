@@ -59,7 +59,7 @@ namespace TestProjectQA.Steps
         [When(@"User clicks on (.*) product item")]
         public void ClickOnProductItem(int num)
         {
-            SearchResultPage.ClikNElement(Driver, num);
+            SearchResultPage.ClikNElement(num);
         }
 
         //[When(@"User clicks on (.*) specific product item in (.*) list")]
@@ -81,6 +81,13 @@ namespace TestProjectQA.Steps
         {
             var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
             pageObject.ScrollToTop();
+        }
+
+        [When(@"User scrolls to bottom page")]
+        public void UserScrollsToButtomPage()
+        {
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
+            pageObject.ScrollToBottom();
         }
 
         [When(@"User scrolls to (.*) element")]
