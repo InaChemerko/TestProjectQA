@@ -103,6 +103,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.When("User logins to Skillfactory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 10
+ testRunner.When("User opens \"https://apps.skillfactory.ru/learning/dashboard\" url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
+ testRunner.When("User waits 5 seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
