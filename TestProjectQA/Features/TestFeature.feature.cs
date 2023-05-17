@@ -186,7 +186,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 35
  testRunner.When("User scrolls to top page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 37
+#line 36
  testRunner.When("User waits 3 seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }

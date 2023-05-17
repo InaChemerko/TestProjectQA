@@ -32,6 +32,5 @@ Scenario: Go Shopping
 	When User moves to ConfirmWindow
 	When User clicks on CloseButton button
 	When User waits loading AddToBag
-	When User scrolls to top page
-	
+	When User scrolls to top page	
 	When User waits 3 seconds
