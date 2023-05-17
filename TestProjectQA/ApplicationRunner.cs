@@ -22,7 +22,7 @@ namespace TestProjectQA
             this.scenarioContext = scenarioContext;
         }
 
-        [BeforeScenario]
+       // [BeforeScenario]
         public void BeforeScenario()
         {
             driver = Application.GetWebDriver();
@@ -30,7 +30,7 @@ namespace TestProjectQA
             Application.OpenDriver(driver, TestConfigurator.AppSettings.Url);
         }
 
-        [AfterScenario]
+       // [AfterScenario]
         public void AfterScenario()
         {
             Application.CloseDriver(driver);
