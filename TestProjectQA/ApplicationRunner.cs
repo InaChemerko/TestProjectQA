@@ -30,12 +30,12 @@ namespace TestProjectQA
             Application.OpenDriver(driver, TestConfigurator.AppSettings.Url);
         }
 
-        //[AfterScenario]
-        //public void AfterScenario()
-        //{
-        //    Application.CloseDriver(driver);
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            Application.CloseDriver(driver);
 
-        //}
+        }
 
 
     }

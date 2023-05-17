@@ -139,5 +139,12 @@ namespace TestProjectQA.PageObjects
             var webElement = WaitElement(locator);
             ScrollToElement(webElement);
         }
+
+        public void WaitLoadingElement(string nameElement)
+        {
+            var locator = GetClickableElementLocator(nameElement);
+            var webElement = WaitElement(locator);
+            ScrollToElement(webElement);            
+        }
     }
 }

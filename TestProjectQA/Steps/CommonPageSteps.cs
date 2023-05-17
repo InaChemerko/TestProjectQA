@@ -96,5 +96,14 @@ namespace TestProjectQA.Steps
             var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
             pageObject.ScrollToWebElelemnt(nameElement);
         }
+
+        [When(@"User waits loading (.*)")]
+        public void WhenUsersWaitLoading(string nameElement)
+        {
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
+            pageObject.WaitLoadingElement(nameElement);
+        }
+
+
     }
 }
