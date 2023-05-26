@@ -10,9 +10,11 @@ using System.Runtime.Intrinsics.X86;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.CommonModels;
 using TechTalk.SpecFlow.Infrastructure;
+using static System.Net.WebRequestMethods;
 
 namespace TestProjectQA.Steps
 {
@@ -37,14 +39,12 @@ namespace TestProjectQA.Steps
             var email = "innachemerko@gmail.com";
             var password = "siigwNaN22";
 
-
             using var client = new HttpClient();
             var csrfToken = await client.GetFromJsonAsync<TokenDto>("https://lms.skillfactory.ru/csrf/api/v1/token");
-
-            client.DefaultRequestHeaders.Add("X-CSRFToken", csrfToken.csrfToken);
-            client.DefaultRequestHeaders.Add("USE-JWT-COOKIE", "true");
-
             
+            client.DefaultRequestHeaders.Add("X-CSRFToken", csrfToken.token);
+            client.DefaultRequestHeaders.Add("USE-JWT-COOKIE", "true");       
+
 
             var formContent = new FormUrlEncodedContent(new[]
             {
@@ -54,6 +54,7 @@ namespace TestProjectQA.Steps
 
 
             var response = await client.PostAsync("https://lms.skillfactory.ru/api/user/v1/account/login_session", formContent);
+            
 
             var cookies = new CookieContainer();
             var uri = new Uri("https://apps.skillfactory.ru/");
