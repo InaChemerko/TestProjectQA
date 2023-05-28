@@ -39,35 +39,44 @@ namespace TestProjectQA.Steps
             var email = "innachemerko@gmail.com";
             var password = "siigwNaN22";
 
-            using var client = new HttpClient();
-            var csrfToken = await client.GetFromJsonAsync<TokenDto>("https://lms.skillfactory.ru/csrf/api/v1/token");
-            
-            client.DefaultRequestHeaders.Add("X-CSRFToken", csrfToken.token);
-            client.DefaultRequestHeaders.Add("USE-JWT-COOKIE", "true");       
-
-
-            var formContent = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("Content-Disposition: form-data; name=\"email\"", email),
-                new KeyValuePair<string, string>("Content-Disposition: form-data; name=\"password\"", password)
-            });
-
-
-            var response = await client.PostAsync("https://lms.skillfactory.ru/api/user/v1/account/login_session", formContent);
-            
-
             var cookies = new CookieContainer();
-            var uri = new Uri("https://apps.skillfactory.ru/");
-
-            foreach (var cookieHeader in response.Headers.GetValues("set-cookie"))
+            var httpClientHandler = new HttpClientHandler
             {
-                cookies.SetCookies(uri, cookieHeader);
+                CookieContainer = cookies
+            };
+            using var client = new HttpClient(httpClientHandler);
+            var token = await client.GetFromJsonAsync<TokenDto>("https://lms.skillfactory.ru/csrf/api/v1/token");
+            
+            client.DefaultRequestHeaders.Add("X-CSRFToken", token.csrfToken);
+            //client.DefaultRequestHeaders.Add("USE-JWT-COOKIE", "true");
+            client.DefaultRequestHeaders.Add("Referer", "https://apps.skillfactory.ru/");
+
+
+            var formContent = new MultipartFormDataContent();
+            formContent.Add(new StringContent(email), "email");
+            formContent.Add(new StringContent(password), "password");
+
+            var response = await client.PostAsync("https://lms.skillfactory.ru/api/user/v1/account/login_session/", formContent);
+            
+            Driver.Manage().Cookies.DeleteAllCookies();
+
+            foreach(Cookie cookie in cookies.GetAllCookies())
+            {
+                Driver.Manage().Cookies.AddCookie(new OpenQA.Selenium.Cookie(cookie.Name, cookie.Value, ".skillfactory.ru", "/", DateTime.UtcNow.AddDays(14)));
             }
 
-            foreach (Cookie cookie in cookies.GetCookies(uri))
-            {
-                Driver.Manage().Cookies.AddCookie(new OpenQA.Selenium.Cookie(cookie.Name, cookie.Value));
-            }         
+            //var cookies = new CookieContainer();
+            //var uri = new Uri("https://apps.skillfactory.ru/");
+
+            //foreach (var cookieHeader in response.Headers.GetValues("set-cookie"))
+            //{
+            //    cookies.SetCookies(uri, cookieHeader);
+            //}
+
+            //foreach (Cookie cookie in cookies.GetCookies(uri))
+            //{
+            //    Driver.Manage().Cookies.AddCookie(new OpenQA.Selenium.Cookie(cookie.Name, cookie.Value));
+            //}         
             
 
         }        

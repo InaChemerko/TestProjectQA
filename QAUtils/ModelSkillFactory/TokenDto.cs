@@ -8,6 +8,6 @@ namespace QAUtils.ModelSkillFactory
 {
     public class TokenDto
     {
-        public string token { get; set; }
+        public string csrfToken { get; set; }
     }
 }
