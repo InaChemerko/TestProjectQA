@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectQA", "TestProjectQA\TestProjectQA.csproj", "{F3D3E6D9-DF3F-4335-9925-0DE1B13A3041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectQA", "TestProjectQA\TestProjectQA.csproj", "{F3D3E6D9-DF3F-4335-9925-0DE1B13A3041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAUtils", "QAUtils\QAUtils.csproj", "{922568FE-8034-487D-8DA7-76C31BFA0036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QAUtils", "QAUtils\QAUtils.csproj", "{922568FE-8034-487D-8DA7-76C31BFA0036}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{ADA000C2-A79E-4AF7-9CA0-6B0014AA1DA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{922568FE-8034-487D-8DA7-76C31BFA0036}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{922568FE-8034-487D-8DA7-76C31BFA0036}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{922568FE-8034-487D-8DA7-76C31BFA0036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA000C2-A79E-4AF7-9CA0-6B0014AA1DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA000C2-A79E-4AF7-9CA0-6B0014AA1DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA000C2-A79E-4AF7-9CA0-6B0014AA1DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA000C2-A79E-4AF7-9CA0-6B0014AA1DA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
