@@ -14,13 +14,23 @@ Scenario: Go Shopping
 	#When User enter in SearchField "sofa" text
 	#When User clicks on SearchButton button
 	When User opens SearchResult page
-	When User clicks on 1 product item
+	When User clicks on OkCookies button
+	When User clicks on 3 product item
 	When User opens ProductItem page
 	When User clicks on AddToBag button
 	When User moves to ConfirmWindow
 	When User clicks on CloseButton button
-	#When User scrolls to Navigation element
+	When User waits loading AddToBag
 	When User scrolls to top page
-	#When User scrolls to SearchField element
-	#When User moves to SearchField
-	When User waits 5 seconds
+	When User clicks on SearchField button
+	When User enter in SearchField "table" text
+	When User clicks on SearchButton button
+	When User opens SearchResult page
+	When User clicks on 2 product item
+	When User opens ProductItem page
+	When User clicks on AddToBag button
+	When User moves to ConfirmWindow
+	When User clicks on CloseButton button
+	When User waits loading AddToBag
+	When User scrolls to top page	
+	When User waits 3 seconds

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using QAUtils.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using TestProjectQA.PageObjects;
 
 namespace TestProjectQA.Steps
 {
@@ -19,5 +21,6 @@ namespace TestProjectQA.Steps
         {
             await Task.Delay(sec * 1000);
         }
+     
     }
 }

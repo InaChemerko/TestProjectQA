@@ -22,20 +22,22 @@ namespace TestProjectQA
             this.scenarioContext = scenarioContext;
         }
 
-        [BeforeScenario]
-        public void BeforeScenario()
-        {
-            driver = Application.GetWebDriver();
-            scenarioContext.Set(driver, KeyStorage.WebDriverKey);
-            Application.OpenDriver(driver, TestConfigurator.AppSettings.Url);
-        }
+        //[BeforeScenario]
+        //public void BeforeScenario()
+        //{
+        //    var app = TestConfigurator.AppSettings;
+        //    driver = Application.GetWebDriver();
+        //    scenarioContext.Set(driver, KeyStorage.WebDriverKey);
+        //    Application.OpenDriver(driver, TestConfigurator.AppSettings.Url);
+        //}
 
-        [AfterScenario]
-        public void AfterScenario()
-        {
-            Application.CloseDriver(driver);
+        //[AfterScenario]
+        //public void AfterScenario()
+        //{
+        //    Application.CloseDriver(driver);
 
-        }
+        //}
+
 
 
     }

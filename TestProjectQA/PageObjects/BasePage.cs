@@ -71,6 +71,35 @@ namespace TestProjectQA.PageObjects
 
         }
 
+        protected IList<IWebElement> WaitElements(By selector, int waitInSecond = WaitInSecond)
+        {
+            try
+            {
+                IList<IWebElement> result = null;
+                 Wait(sec: waitInSecond).Until(driver =>
+                {
+                    try
+                    {                        
+                        result = driver.FindElements(selector);
+                        return true;
+
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                });
+
+                return result ?? throw new WebDriverTimeoutException();
+            }
+            catch (WebDriverTimeoutException)
+            {
+
+                throw new NoSuchElementException($"Element was not found by the following selector: ${selector.ToString()}");
+            }
+
+        }
+
         protected WebDriverWait Wait(int days = 0, int hours = 0, int min = 0, int sec = 0, int ms = 0) =>
             new(this.driver, new TimeSpan(days, hours, min, sec, ms));
 
@@ -109,6 +138,13 @@ namespace TestProjectQA.PageObjects
             var locator = GetClickableElementLocator(nameElement);
             var webElement = WaitElement(locator);
             ScrollToElement(webElement);
+        }
+
+        public void WaitLoadingElement(string nameElement)
+        {
+            var locator = GetClickableElementLocator(nameElement);
+            var webElement = WaitElement(locator);
+            ScrollToElement(webElement);            
         }
     }
 }

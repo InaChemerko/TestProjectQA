@@ -34,9 +34,10 @@ namespace TestProjectQA.PageObjects
             throw new NotFoundException($"Unable to find locator by provided name {nameElement}");
         }
 
-        public void ClikNElement(IWebDriver driver, int number)
+        public void ClikNElement(int number)
         {
-            var webElements = WaitElements(By.XPath("//*[contains(@class, 'pip-product-compact')]/a"));
+            //var webElements = WaitElements(By.XPath("//*[contains(@class, 'pip-product-compact')]/a"));
+            var webElements = WaitElements(By.XPath("//div[@class='pip-compact-price-package']"));
 
             if (webElements.Count < number)
             {

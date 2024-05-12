@@ -64,6 +64,11 @@ namespace TestProjectQA.PageObjects
             ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0,0)");
         }
 
+        public void ScrollToBottom()
+        {
+            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+        }
+
         public void MoveToElement(string nameElement)
         {
             var locator = GetClickableElementLocator(nameElement);
@@ -72,6 +77,13 @@ namespace TestProjectQA.PageObjects
         }
 
         public void ScrollToWebElelemnt(string nameElement)
+        {
+            var locator = GetClickableElementLocator(nameElement);
+            var webElement = WaitElement(locator);
+            ScrollToElement(webElement);
+        }
+
+        public void WaitLoadingElement(string nameElement)
         {
             var locator = GetClickableElementLocator(nameElement);
             var webElement = WaitElement(locator);

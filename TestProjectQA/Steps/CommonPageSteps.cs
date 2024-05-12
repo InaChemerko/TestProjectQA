@@ -59,8 +59,15 @@ namespace TestProjectQA.Steps
         [When(@"User clicks on (.*) product item")]
         public void ClickOnProductItem(int num)
         {
-            SearchResultPage.ClikNElement(Driver, num);
+            SearchResultPage.ClikNElement(num);
         }
+
+        //[When(@"User clicks on (.*) specific product item in (.*) list")]
+        //public void ClickOnSpecificProductItem(string num, string nameElement)
+        //{
+        //    var pageObject = ScenarioContext.Get<BasePage>(KeyStorage.PageKey);
+        //    pageObject.ClickOnSpecificElement(num, nameElement);
+        //}
 
         [When(@"User moves to (.*)")]
         public void MoveToWebElement(string name)
@@ -76,11 +83,27 @@ namespace TestProjectQA.Steps
             pageObject.ScrollToTop();
         }
 
+        [When(@"User scrolls to bottom page")]
+        public void UserScrollsToButtomPage()
+        {
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
+            pageObject.ScrollToBottom();
+        }
+
         [When(@"User scrolls to (.*) element")]
         public void Scrolling(string nameElement)
         {
             var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
             pageObject.ScrollToWebElelemnt(nameElement);
         }
+
+        [When(@"User waits loading (.*)")]
+        public void WhenUsersWaitLoading(string nameElement)
+        {
+            var pageObject = ScenarioContext.Get<BasePageObject>(KeyStorage.PageKey);
+            pageObject.WaitLoadingElement(nameElement);
+        }
+
+
     }
 }

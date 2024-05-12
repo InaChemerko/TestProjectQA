@@ -13,6 +13,7 @@ namespace TestProjectQA.PageObjects
         private IWebElement searchField => WaitElement(By.XPath("//input[@name='q']"));
         private IWebElement searchButton => WaitElement(By.XPath("//button[@type='submit']"));
         private IWebElement okCookiesButton => WaitElement(By.XPath("//button[text()='Ok']"));
+        private IWebElement shoppingCartButton => WaitElement(By.XPath("//div/ul/li[5]/a/span"));
 
         public static readonly Dictionary<string, By> ClickableElements = new Dictionary<string, By>()
         {
@@ -24,6 +25,9 @@ namespace TestProjectQA.PageObjects
             },
             {
                 "OkCookies", By.XPath("//button[text()='Ok']")
+            },
+            {
+                "shoppingCartButton", By.XPath("//div/ul/li[5]/a/span")
             }
         };
 
